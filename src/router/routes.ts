@@ -18,7 +18,7 @@ router.get('/auth', async (req, res) => {
     const { data, error } = await supabase
         .from('User')
         .insert(
-            { name: 'Dan', code: Number(req.query.code) }).select()
+            { name: 'Dan', code: req.query.code }).select()
     console.log({ data, error })
 
 
