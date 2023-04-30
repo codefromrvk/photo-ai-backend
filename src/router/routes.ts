@@ -16,12 +16,6 @@ router.post('/test', validateJWT, BasicController.testFunction);
 router.get('/auth', async (req, res) => {
     console.log("req", req.body, req.query)
 
-    const { data, error } = await supabase
-        .from('User')
-        .insert(
-            { name: 'Dan'+Math.random(), code: req.query.code }).select()
-    console.log({ data, error })
-
     try {
         const {access_token,user_id} = await axiosInstance.post("/oauth/access_token",{
             client_id:"221198347198691",
@@ -37,9 +31,15 @@ router.get('/auth', async (req, res) => {
             grant_type:"ig_exchange_token",
             access_token
         })
-        console.log({long_lived_access_token});
+
+        const { data, error } = await supabase
+        .from('User')
+        .insert(
+            { name: 'Dan'+Math.random(), access_token:long_lived_access_token }).select()
+        console.log({data, error });
         
     } catch (error) {
+        console.log({error});
         
     }
 
