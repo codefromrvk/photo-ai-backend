@@ -5,7 +5,7 @@ services:
   # Service for sendWaMessage
   notification_service_server:
     # TODO: Add Image name here from Amazon ECR
-    image: 804399200597.dkr.ecr.ap-south-1.amazonaws.com/paths:someImageWithVersion-0.0.1
+    image: 804399200597.dkr.ecr.ap-south-1.amazonaws.com/paths:someImageWithVersion-0.0.2
     restart: unless-stopped
     volumes:
       - ./logs:/project-path/logger  # TODO: Change this project-path to your logger path (check dockerfile WORKDIR)
