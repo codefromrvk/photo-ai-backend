@@ -1,0 +1,17 @@
+version: '3.1'
+
+# "services" defines the service name that will be used to communicate with each other.
+services:
+  # Service for sendWaMessage
+  notification_service_server:
+    # TODO: Add Image name here from Amazon ECR
+    image: 804399200597.dkr.ecr.ap-south-1.amazonaws.com/paths:someImageWithVersion-0.0.1
+    restart: unless-stopped
+    volumes:
+      - ./logs:/project-path/logger  # TODO: Change this project-path to your logger path (check dockerfile WORKDIR)
+    ports:
+      - '5000:5000'
+    env_file:
+      - .env
+    # TODO: Add Service name here
+    container_name: 'service_name'
