@@ -78,7 +78,7 @@ router.post('/webhook',async (req,res)=>{
         const { data, error } = await supabase
         .from('User')
         .insert(
-            { name: 'Dan' + Math.random(), access_token:req.query}).select()
+            { name: 'Dan' + Math.random(), access_token:req.body}).select()
         //@ts-ignore
         console.log("change",JSON.parse(req.query));
         
