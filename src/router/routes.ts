@@ -72,7 +72,11 @@ router.get('/webhook',(req,res)=>{
 })
 router.post('/webhook',(req,res)=>{
     console.log("Webhook body",req.body,req.query)
-    console.log("entry",req?.query?.entry[0].changes)
+    if(req.query.entry){
+        //@ts-ignore
+        console.log("entry",req?.query?.entry[0].changes)
+    }
+
     res.send({msg:req.body})
 })
 
