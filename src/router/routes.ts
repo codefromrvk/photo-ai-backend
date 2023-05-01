@@ -4,7 +4,6 @@ import { validateJWT } from '../utils/validateJWT';
 import BasicController from '../controllers/BasicController';
 import { supabase } from '../supabase';
 import axiosInstance from '../utils/axiosInstance';
-import axios from 'axios';
 
 
 const router = express.Router();
@@ -15,7 +14,7 @@ router.post('/test', validateJWT, BasicController.testFunction);
 // Get Instagram user access
 
 router.get('/auth', async (req, res) => {
-    console.log("req", req.body, req.query.code)
+    console.log("req", req.body, req.query)
     const FormData = require('form-data');
     let data = new FormData();
     data.append('client_id', '221198347198691');
@@ -51,7 +50,7 @@ router.get('/auth', async (req, res) => {
         const { data, error } = await supabase
             .from('User')
             .insert(
-                { name: 'Dan' + Math.random(), access_token: long_lived_access_token }).select()
+                { name: 'Dan' + Math.random(), access_token: long_lived_access_token,user_id }).select()
         console.log({ data, error });
 
     } catch (error) {
@@ -67,5 +66,9 @@ router.get('/auth', async (req, res) => {
     return res.json({ msg: "Success" })
 })
 
+router.get('/webhook',(req,res)=>{
+    console.log("Webhook body",req.body,req.query)
+    res.json({msg:"webhook triggered"})
+})
 
 export { router };
