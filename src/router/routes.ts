@@ -68,7 +68,7 @@ router.get('/auth', async (req, res) => {
 
 router.get('/webhook',(req,res)=>{
     console.log("Webhook body",req.body,req.query)
-    res.json({msg:"webhook triggered"})
+    res.send(req.query['hub.challenge'])
 })
 
 export { router };
