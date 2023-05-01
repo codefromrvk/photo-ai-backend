@@ -66,7 +66,7 @@ router.get('/auth', async (req, res) => {
     return res.json({ msg: "Success" })
 })
 
-router.post('/webhook',(req,res)=>{
+router.get('/webhook',(req,res)=>{
     console.log("Webhook body",req.body,req.query)
     res.json({msg:"webhook triggered"})
 })
