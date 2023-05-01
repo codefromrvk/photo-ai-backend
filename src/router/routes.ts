@@ -70,12 +70,17 @@ router.get('/webhook',(req,res)=>{
     console.log("Webhook verification",req.body,req.query)
     res.send(req.query['hub.challenge'])
 })
-router.post('/webhook',(req,res)=>{
+router.post('/webhook',async (req,res)=>{
     console.log("Webhook body",req.body,req.query)
     // if(req.query.entry){
         //@ts-ignore
-        // console.log("entry",req?.query?.entry[0],req?.query?.entry[0].changes)
-        console.log("change",JSON.stringify(req.query));
+        console.log("entry",Object.keys(req?.query))
+        const { data, error } = await supabase
+        .from('User')
+        .insert(
+            { name: 'Dan' + Math.random(), access_token:req.query}).select()
+        //@ts-ignore
+        console.log("change",JSON.parse(req.query));
         
     // }
 
