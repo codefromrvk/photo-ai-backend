@@ -74,7 +74,7 @@ router.post('/webhook',(req,res)=>{
     console.log("Webhook body",req.body,req.query)
     // if(req.query.entry){
         //@ts-ignore
-        console.log("entry",req?.query?.entry[0],req?.query?.entry[0].changes)
+        // console.log("entry",req?.query?.entry[0],req?.query?.entry[0].changes)
         console.log("change",JSON.stringify(req.query));
         
     // }
