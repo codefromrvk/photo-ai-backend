@@ -14,7 +14,7 @@ router.post('/test', validateJWT, BasicController.testFunction);
 // Get Instagram user access
 
 router.get('/auth', async (req, res) => {
-    console.log("req", req.body, req.query.code)
+    console.log("req", req.body, req.query)
     const FormData = require('form-data');
     let data = new FormData();
     data.append('client_id', '221198347198691');
